@@ -7,15 +7,12 @@ class PaginatedSuggestionExample extends StatefulWidget {
   const PaginatedSuggestionExample({super.key});
 
   @override
-  State<PaginatedSuggestionExample> createState() =>
-      _PaginatedSuggestionExampleState();
+  State<PaginatedSuggestionExample> createState() => _PaginatedSuggestionExampleState();
 }
 
-class _PaginatedSuggestionExampleState
-    extends State<PaginatedSuggestionExample> {
+class _PaginatedSuggestionExampleState extends State<PaginatedSuggestionExample> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _dropdownSearchFieldController =
-      TextEditingController();
+  final TextEditingController _dropdownSearchFieldController = TextEditingController();
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
   String? _selectedName;
 
@@ -33,9 +30,7 @@ class _PaginatedSuggestionExampleState
 
   List<String> getSuggestions(String query) {
     if (query.isNotEmpty) {
-      final tempList = names
-          .where((s) => s.toLowerCase().contains(query.toLowerCase()))
-          .toList();
+      final tempList = names.where((s) => s.toLowerCase().contains(query.toLowerCase())).toList();
       return tempList;
     }
     int i = 0;
@@ -83,6 +78,7 @@ class _PaginatedSuggestionExampleState
                   itemBuilder: (context, String suggestion) {
                     return ListTile(
                       title: Text(suggestion),
+                      leading: const Icon(Icons.person),
                     );
                   },
                   itemSeparatorBuilder: (context, index) {
@@ -95,10 +91,9 @@ class _PaginatedSuggestionExampleState
                     _dropdownSearchFieldController.text = suggestion;
                   },
                   suggestionsBoxController: suggestionBoxController,
-                  validator: (value) =>
-                      value!.isEmpty ? 'Please select a name' : null,
+                  validator: (value) => value!.isEmpty ? 'Please select a name' : null,
                   onSaved: (value) => _selectedName = value,
-                  displayAllSuggestionWhenTap: true,
+                  displayAllSuggestionWhenTap: false,
                 ),
                 const Spacer(),
                 ElevatedButton(
@@ -108,8 +103,7 @@ class _PaginatedSuggestionExampleState
                       _formKey.currentState!.save();
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content:
-                              Text('Your favorite name is $_selectedName.'),
+                          content: Text('Your favorite name is $_selectedName.'),
                         ),
                       );
                     }

@@ -18,58 +18,46 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Drop down Search Field demo',
-      scrollBehavior: const MaterialScrollBehavior().copyWith(
-          dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch}),
-      home: DefaultTabController(
-        length: 1,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Dropdown Search Field Demo'),
-          ),
-          body: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
-            child: Center(
-              child: Builder(
-                builder: (context) => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FormFieldExample()),
-                        );
-                      },
-                      child: const Text('Form Field Example'),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const MultiSelectDropdown()),
-                        );
-                      },
-                      child: const Text('Multi Select Example'),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const PaginatedSuggestionExample()),
-                        );
-                      },
-                      child: const Text('Paginated Suggestion Example'),
-                    ),
-                  ],
+      scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch}),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Dropdown Search Field Demo'),
+        ),
+        body: Center(
+          child: Builder(
+            builder: (context) => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const FormFieldExample()),
+                    );
+                  },
+                  child: const Text('Form Field Example'),
                 ),
-              ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MultiSelectDropdown()),
+                    );
+                  },
+                  child: const Text('Multi Select Example'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PaginatedSuggestionExample()),
+                    );
+                  },
+                  child: const Text('Paginated Suggestion Example'),
+                ),
+              ],
             ),
           ),
         ),
